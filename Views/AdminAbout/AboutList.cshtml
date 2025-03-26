@@ -1,0 +1,38 @@
+﻿@model List<AcunmedyaAkademi2.Entities.About>
+
+@{
+    ViewBag.Title = "AboutList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Hakkımızda Açıklaması</th>
+                                    <th scope="col">Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+                                        <th scope="row">@item.AboutId</th>
+                                        <td>@item.Description</td>
+                                        <td><a href="/AdminAbout/UpdateAbout/@item.AboutId" class="btn btn-success">Yazıyı Güncelle</a></td>
+                                    </tr>
+                                }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- .animated -->
+</div>
+
+

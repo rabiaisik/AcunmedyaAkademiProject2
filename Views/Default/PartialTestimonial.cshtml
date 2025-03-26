@@ -1,0 +1,42 @@
+﻿@model List<AcunmedyaAkademi2.Entities.testimonial>
+
+<div class="testimonial_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="testimonial_taital">Görüşler</h1>
+            </div>
+        </div>
+        <div class="testimonial_section_2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="main_slider" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @{
+                                bool firstItem = true;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <div class="carousel-item @(firstItem ? "active" : "")">
+                                    <p class="testimonial_text">@item.CommentDetail</p>
+                                    <h4 class="client_name">@item.NameSurname</h4>
+                                    <div class="client_img">
+                                        <img src="@item.ImageUrl" alt="Client Image"
+                                             style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+                                    </div>
+                                </div>
+                                firstItem = false; // İlk elemandan sonra active sınıfı kaldırılıyor
+                            }
+                        </div>
+                        <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

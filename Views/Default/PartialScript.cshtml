@@ -1,0 +1,46 @@
+﻿<div class="copyright_section">
+    <div class="container">
+        <p class="copyright_text">@DateTime.Now.Year Tüm Hakları Saklıdır. Design by <a href="https://html.design">Free Html Templates</a> Distribution by <a href="https://themewagon.com">ThemeWagon</a></p>
+    </div>
+</div>
+<!-- copyright section end -->
+<!-- Javascript files-->
+<script src="/Romyk-1.0.0/js/jquery.min.js"></script>
+<script src="/Romyk-1.0.0/js/popper.min.js"></script>
+<script src="/Romyk-1.0.0/js/bootstrap.bundle.min.js"></script>
+<script src="/Romyk-1.0.0/js/jquery-3.0.0.min.js"></script>
+<script src="/Romyk-1.0.0/js/plugin.js"></script>
+<!-- sidebar -->
+<script src="/Romyk-1.0.0/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/Romyk-1.0.0/js/custom.js"></script>
+<!-- javascript -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".openModal").forEach(button => {
+            button.addEventListener("click", function (event) {
+                event.preventDefault(); // Linkin varsayılan davranışını engelle
+
+                var image = this.getAttribute("data-image");
+                var name = this.getAttribute("data-name");
+                var price = this.getAttribute("data-price");
+                var description = this.getAttribute("data-description");
+
+                Swal.fire({
+                    title: name,
+                    html: `
+                    <img src="${image}" alt="${name}" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
+                    <p style="font-size: 18px; font-weight: bold;">Fiyat: ${price} TL</p>
+                    <p style="text-align: left;">${description}</p>
+                `,
+                    showCloseButton: true,
+                    confirmButtonText: "Kapat",
+                    confirmButtonColor: "#ff6b81"
+                });
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+

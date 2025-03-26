@@ -1,0 +1,83 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+@Html.Action("PartialHead", "Default")
+<body>
+    <div class="header_section">
+        @Html.Action("PartialNavbar", "Default")
+        <!-- banner section start -->
+        @Html.Action("PartialSlider", "Default")
+        <!-- banner section end -->
+    </div>
+    <!-- header section end -->
+    <!-- about sectuion start -->
+    @Html.Action("PartialAbout", "Default")
+    <!-- about sectuion end -->
+    <!-- cream sectuion start -->
+    @Html.Action("PartialLast6Product", "Default")
+    <!-- cream sectuion end -->
+    <!-- services section start -->
+    @Html.Action("PartialService", "Default")
+    <!-- services section end -->
+    <!-- testimonial section start -->
+    @Html.Action("PartialTestimonial", "Default")
+    <!-- testimonial section end -->
+    <!-- contact section start -->
+    <div class="contact_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="contact_main">
+                        <h1 class="contact_taital">Contact Us</h1>
+                        <form action="/action_page.php">
+                            <div class="form-group">
+                                <input type="text" class="email-bt" placeholder="İsminiz" name="Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="email-bt" placeholder="Email" name="Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="email-bt" placeholder="Telefon Numarası" name="Email">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Mesajınız"></textarea>
+                            </div>
+                        </form>
+                        <div class="main_bt"><a href="#">Gönder</a></div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="location_text">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="padding_left_10 active"><i class="fa fa-map-marker" aria-hidden="true"></i></span>İstanbul/Türkiye
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="padding_left_10"><i class="fa fa-phone" aria-hidden="true"></i></span>Call : +90 5439996419
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="padding_left_10"><i class="fa fa-envelope" aria-hidden="true"></i></span>Email : rabiaisik@gmail.com
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mail_main">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.6943364344124!2d29.007339276429285!3d41.11936621257663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab5b39cefc5e3%3A0xee4f06a4f79630ce!2sAcunmedya%20Akademi!5e0!3m2!1str!2str!4v1742073492391!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact section end -->
+    <!-- copyright section start -->
+    @Html.Action("PartialScript", "Default");
+</body>
+</html>

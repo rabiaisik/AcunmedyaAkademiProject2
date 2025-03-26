@@ -1,0 +1,102 @@
+﻿@model List<AcunmedyaAkademi2.Entities.Product>
+@using System.Web
+
+@{
+    ViewBag.Title = "Ürün İstatistikleri";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<meta charset="UTF-8">
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawCharts);
+
+    function drawCharts() {
+        drawCategoryChart();
+        drawPriceChart();
+    }
+
+    // 📌 KATEGORİYE GÖRE ÜRÜN SAYISI GRAFİĞİ (Pasta Grafik)
+    function drawCategoryChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Kategori', 'Ürün Sayısı'],
+            @foreach (var categoryGroup in Model.GroupBy(p => HttpUtility.HtmlDecode(p.Category.CategoryName)))
+            {
+                <text>['@categoryGroup.Key', @categoryGroup.Count()],</text>
+            }
+        ]);
+
+        var options = {
+            title: 'Kategoriye Göre Ürün Dağılımı',
+            pieHole: 0.4, // Donut grafik görünümü
+            slices: {
+                0: { color: '#4CAF50' }, // Yeşil
+                1: { color: '#2196F3' }, // Mavi
+                2: { color: '#FF9800' }  // Turuncu
+            },
+            fontSize: 14,
+            titleTextStyle: { fontSize: 16, bold: true }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('category_chart'));
+        chart.draw(data, options);
+    }
+
+    // 📌 ÜRÜN FİYATLARI GRAFİĞİ (Sütun Grafik)
+    function drawPriceChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Ürün Adı', 'Fiyat', { role: 'style' }],
+            @foreach (var item in Model)
+            {
+                <text>['@HttpUtility.HtmlDecode(item.ProductName)', @item.Price, '#03A9F4'],</text>
+            }
+        ]);
+
+        var options = {
+            title: 'Ürünlerin Fiyat Dağılımı',
+            hAxis: {
+                title: 'Ürün Adı',
+                slantedText: true,
+                slantedTextAngle: 45 // Ürün isimleri yatay kayma yapmaz
+            },
+            vAxis: { title: 'Fiyat (₺)' },
+            legend: 'none',
+            fontSize: 14
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('price_chart'));
+        chart.draw(data, options);
+    }
+</script>
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <!-- 📌 ÜRÜN SAYISI GRAFİĞİ -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Kategori Bazında Ürün Sayısı</strong>
+                    </div>
+                    <div class="card-body">
+                        <div id="category_chart" style="width: 100%; height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 📌 ÜRÜN FİYATLARI GRAFİĞİ -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Ürünlerin Fiyat Dağılımı</strong>
+                    </div>
+                    <div class="card-body">
+                        <div id="price_chart" style="width: 100%; height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- .animated -->
+</div>
